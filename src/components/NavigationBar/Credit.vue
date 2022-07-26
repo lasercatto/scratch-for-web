@@ -13,7 +13,7 @@ export default {
                 position: 'center',
                 icon: 'info',
                 title: 'S4W Developers',
-                text: 'JeremyGamer13, IMPASTA, LaserCat, frostzzone - v1.0',
+                text: 'Not The Droids, LaserCat - v1.0',
                 showConfirmButton: true
             })
         },
