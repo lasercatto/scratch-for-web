@@ -11,10 +11,10 @@
 import Blockly from "blockly";
 
 import toolbox from "../toolbox";
-import {Backpack} from '@blockly/workspace-backpack';
+//import {Backpack} from '@blockly/workspace-backpack';
 import {WorkspaceSearch} from '@blockly/plugin-workspace-search';
 import theme from '@blockly/theme-dark';
-import Load from '../backpack-save-load.js';
+//import Load from '../backpack-save-load.js';
 import localforage from "localforage";
 export default {
     name: "BlocklyComponent",
@@ -436,7 +436,7 @@ function svgToPng_(data, width, height, callback) {
       weight: 100,
     });
 
-				const defaultOptions = {
+				/*const defaultOptions = {
 					contextMenu: {
 						emptyBackpack: true,
 						removeFromBackpack: true,
@@ -445,17 +445,17 @@ function svgToPng_(data, width, height, callback) {
 						pasteAllToBackpack: true,
 						disablePreconditionChecks: true,
 					},
-				};
+				};*/
         const workspaceSearch = new WorkspaceSearch(workspace);
         workspaceSearch.init();
         workspaceSearch.close();
 
-				const backpack = new Backpack(workspace,defaultOptions);
+				/*const backpack = new Backpack(workspace,defaultOptions);
 				backpack.init();
                 Load(backpack)
         this.$store.commit("setWorkspace", {
             workspace
-        });
+        });*/
         workspace.addChangeListener(Blockly.Events.disableOrphans);
         this.$nextTick(() => {});
     }

@@ -39,8 +39,26 @@ export default (Blockly) => {
     </category>
 
     <category name="Tags" colour="#247247">
+
       <block type="html_div">
       </block>
+
+      <category name="Text" colour="#22ffaa">
+
+        <block type="html_text">
+        </block>
+      
+        <block type="html_paragraph">
+        </block>
+
+        <block type="html_bold">
+        </block>
+
+        <block type="html_italic">
+        </block>
+
+      </category>
+
     </category>
 
   </category>

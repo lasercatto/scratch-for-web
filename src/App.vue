@@ -18,6 +18,7 @@ import "./prompt";
 import "./blocks/html";
 import "./blocks/html/base";
 import "./blocks/html/tags";
+import "./blocks/html/tags/text";
 import "./blocks/miscellaneous";
 
 import Theme from '@blockly/theme-modern';
