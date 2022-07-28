@@ -22,6 +22,10 @@
                     style="border-right-color: #161719; border-radius: 0em; border-top-left-radius: 0.25em; border-bottom-left-radius: 0.25em">
                     <span contenteditable="true" id="docName">{{ $t("untitled") }}</span>
                 </b-button>
+                <b-button id="downloadAsHTMLFile" style="border-radius: 0em; border-right-color: #161719;"
+                    @click="downloadToHtml">
+                    <b-icon-download></b-icon-download>
+                </b-button>
                 <b-button id="v-step-3"
                     style="border-radius: 0em; border-top-right-radius: 0.25em; border-bottom-right-radius: 0.25em"
                     @click="displaySite">
@@ -68,6 +72,19 @@ export default {
         element.blur();
     },
     methods: {
+        downloadToHtml(){
+            const htmlContent = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());
+            const blob = new Blob([htmlContent])
+            const a = document.createElement("a");
+            a.style = "display: none";
+            document.body.appendChild(a);
+            const url = window.URL.createObjectURL(blob);
+            a.href = url;
+            a.download = "index.html";
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        },
         displaySite(){
             console.log("ok")
             const javascriptContent = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());
