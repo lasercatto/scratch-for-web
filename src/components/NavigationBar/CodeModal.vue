@@ -6,13 +6,15 @@
 </template>
 
 <script>
+//import Blockly from "blockly";
 //import beautify from "js-beautify";
   
 export default {
     name: "editmenu",
     computed: {
         content: function(){
-            return this.getWorkspaceCode()
+            // couldnt get it to work so i just made it return specific text only
+            return "This feature still doesn't work yet. Hopefully it'll be fixed soon!"
         }
     }
 }
@@ -20,11 +22,14 @@ export default {
 
 <style>
 
+
 #code {
     min-width: 100%;
     min-height: 100%;
 }
-
+#code-modal {
+    color: white;
+}
 #code-modal .modal-dialog {
     max-width: 100%;
     margin: 0;

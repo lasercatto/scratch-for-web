@@ -16,13 +16,14 @@ import {WorkspaceSearch} from '@blockly/plugin-workspace-search';
 import theme from '@blockly/theme-dark';
 //import Load from '../backpack-save-load.js';
 import localforage from "localforage";
+import Swal from "sweetalert2";
 export default {
     name: "BlocklyComponent",
     props: ["options"],
     data() {
         return {
             toastLogin: false,
-            workspace: this.$store.state.workspace
+            workspace: Blockly.getMainWorkspace()
         }
     },
     async mounted() {
@@ -355,6 +356,54 @@ function svgToPng_(data, width, height, callback) {
                 toolbox: toolbox(Blockly,val),
             }
         });
+// autosaves
+        const xml = await localforage.getItem("save3");
+        if (xml !== null) {
+            if (xml.length > 61) {
+                Swal.fire({
+                    title: "An autosave of your blocks was found!",
+                    showDenyButton: true,
+                    icon: "question",
+                    denyButtonText: "Cancel",
+                    confirmButtonText: "Load",
+                    preConfirm: async () => {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true
+                        })
+                        Toast.fire({
+                            icon: 'success',
+                            title: "Loaded your autosave!"
+                        })
+                        console.log('loaded a save!')
+                        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
+                    },
+                })
+            }
+        }
+        const DISABLED_EVENTS = [
+            Blockly.Events.BUBBLE_OPEN,
+            Blockly.Events.BUMP_EVENTS,
+            Blockly.Events.CLICK,
+            Blockly.Events.BLOCK_DRAG,
+            Blockly.Events.FINISHED_LOADING,
+            Blockly.Events.SELECTED,
+            Blockly.Events.THEME_CHANGE,
+            Blockly.Events.TOOLBOX_ITEM_SELECT,
+            Blockly.Events.TRASHCAN_OPEN,
+            Blockly.Events.UI,
+            Blockly.Events.VIEWPORT_CHANGE,
+        ];
+        workspace.addChangeListener((event) => {
+            if (DISABLED_EVENTS.includes(event.type)) return;
+            console.log('saved changes...')
+            const content = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
+            localforage.setItem("save3", content);
+        });
+// autosaves
             Blockly.ContextMenuRegistry.registry.register({
       displayText: 'Add to favorite',
       preconditionFn: function(scope) {
