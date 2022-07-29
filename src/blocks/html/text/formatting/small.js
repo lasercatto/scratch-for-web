@@ -1,9 +1,9 @@
 import Blockly from "blockly/core";
 
-const blockName = "html_bold";
+const blockName = "html_small";
 
 const blockData = {
-    "message0": "bold %1 %2",
+    "message0": "small %1 %2",
     "colour": "#218ceb",
     "args0": [
         {
@@ -16,7 +16,7 @@ const blockData = {
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "tooltip": "Makes text bold."
+    "tooltip": "Makes text small."
 };
 
 Blockly.Blocks[blockName] = {
@@ -28,9 +28,7 @@ Blockly.Blocks[blockName] = {
 Blockly.JavaScript[blockName] = function(block) {
     const statements = Blockly.JavaScript.statementToCode(block, "STATEMENTS");
     const code = `
-<bold>
-${statements}
-</bold>
+<small>${statements}</small>
 `;
     return code;
 };

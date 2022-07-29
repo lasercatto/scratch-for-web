@@ -1,0 +1,5 @@
+import "./bold.js"
+import "./italic.js"
+import "./small.js"
+import "./strikethrough"
+import "./underline.js"

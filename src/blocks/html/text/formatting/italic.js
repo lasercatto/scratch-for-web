@@ -1,20 +1,22 @@
 import Blockly from "blockly/core";
 
-const blockName = "html_text";
+const blockName = "html_italic";
 
 const blockData = {
-    "message0": "text %1",
+    "message0": "italic %1 %2",
     "colour": "#218ceb",
     "args0": [
         {
-            "type": "input_value",
-            "name": "TEXT",
-            "check": ["String", "Number"]
+            "type": "input_dummy"
         },
+        {
+            "type": "input_statement",
+            "name": "STATEMENTS"
+        }
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "tooltip": "Add text into your website."
+    "tooltip": "Makes text italic."
 };
 
 Blockly.Blocks[blockName] = {
@@ -24,9 +26,9 @@ Blockly.Blocks[blockName] = {
 };
 
 Blockly.JavaScript[blockName] = function(block) {
-    const statements = Blockly.JavaScript.valueToCode(block, "TEXT", Blockly.JavaScript.ORDER_ATOMIC);
+    const statements = Blockly.JavaScript.statementToCode(block, "STATEMENTS");
     const code = `
-${statements}
+<em>${statements}</em>
 `;
     return code;
 };

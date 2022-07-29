@@ -38,12 +38,14 @@ export default (Blockly) => {
 
     </category>
 
-    <category name="Tags" colour="#247247">
+    <category name="Containers" colour="#247247">
 
       <block type="html_div">
       </block>
 
-      <category name="Text" colour="#22ffaa">
+    </category>
+
+    <category name="Text" colour="#22ffaa">
 
         <block type="html_text">
         </block>
@@ -51,15 +53,41 @@ export default (Blockly) => {
         <block type="html_paragraph">
         </block>
 
-        <block type="html_bold">
+        <block type="html_header">
         </block>
 
-        <block type="html_italic">
+        <block type="html_anchor">
         </block>
+
+        <block type="html_hr">
+        </block>
+
+        <block type="html_br">
+        </block>
+
+        <block type="html_comment">
+        </block>
+
+        <category name="Formatting" colour="398DDB">
+
+          <block type="html_bold">
+          </block>
+
+          <block type="html_italic">
+          </block>
+
+          <block type="html_small">
+          </block>
+
+          <block type="html_strikethrough">
+          </block>
+
+          <block type="html_underline">
+          </block>
+          
+        </category>
 
       </category>
-
-    </category>
 
   </category>
 

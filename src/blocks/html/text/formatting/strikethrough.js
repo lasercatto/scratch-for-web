@@ -1,9 +1,9 @@
 import Blockly from "blockly/core";
 
-const blockName = "html_italic";
+const blockName = "html_strikethrough";
 
 const blockData = {
-    "message0": "italic %1 %2",
+    "message0": "strikethrough %1 %2",
     "colour": "#218ceb",
     "args0": [
         {
@@ -16,7 +16,7 @@ const blockData = {
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "tooltip": "Makes text italic."
+    "tooltip": "Strikes text through."
 };
 
 Blockly.Blocks[blockName] = {
@@ -28,9 +28,7 @@ Blockly.Blocks[blockName] = {
 Blockly.JavaScript[blockName] = function(block) {
     const statements = Blockly.JavaScript.statementToCode(block, "STATEMENTS");
     const code = `
-<i>
-${statements}
-</i>
+<s>${statements}</s>
 `;
     return code;
 };
