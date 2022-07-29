@@ -17,50 +17,52 @@ const DISABLED_EVENTS = [
 ];
 
 export default async function register(self) {
-    console.log('started!')
-    setTimeout(async()=>{
-    const workspace = self.$store.state.workspace;
+  console.log('started!')
+  setTimeout(async () => {
+    const workspace = self
+    console.log(workspace)
     const xml = await localforage.getItem("save3");
-    if(xml !== null){
-        if(xml.length > 61){
+    if (xml !== null) {
+      if (xml.length > 61) {
         Swal.fire({
-            title:self.$t("autosave.title2"),
-            showDenyButton: true,
-            icon:"question",
-            denyButtonText: self.$t("autosave.cancell"),
-            confirmButtonText: self.$t("autosave.confirm"),
-            preConfirm: async () => {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                  })
-                  
-                  Toast.fire({
-                    icon: 'success',
-                    title: self.$t("autosave.text")
-                  })
-                console.log('loaded a save!')
-                Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
-            },})
-        }
+          title: "An autosave of your blocks was found!",
+          showDenyButton: true,
+          icon: "question",
+          denyButtonText: "Cancel",
+          confirmButtonText: "Load",
+          preConfirm: async () => {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+
+            Toast.fire({
+              icon: 'success',
+              title: "Autosave loaded!"
+            })
+            console.log('loaded a save!')
+            Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
+          },
+        })
+      }
 
     }
     workspace.addChangeListener((event) => {
-        if (DISABLED_EVENTS.includes(event.type)) return;
-        handle(workspace);
+      if (DISABLED_EVENTS.includes(event.type)) return;
+      handle(workspace);
     });
-  },1000)
+  }, 1000)
 }
 
 async function handle(workspace) {
-    console.log('saved changes...')
-    const content = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
-    await localforage.setItem("save3", content);
+  console.log('saved changes...')
+  const content = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
+  await localforage.setItem("save3", content);
 }

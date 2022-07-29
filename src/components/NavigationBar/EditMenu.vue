@@ -11,31 +11,31 @@
 </template>
 
 <script>
-
+import Blockly from "blockly";
 export default {
     name: "editmenu",
     computed: {
         blockCount: function() {
-            return this.$store.state.workspace ? this.$store.state.workspace.getAllBlocks().length : 0;
+            return Blockly.getMainWorkspace() ? Blockly.getMainWorkspace().getAllBlocks().length : 0;
         }
     },
     methods: {
         undo() {
-            this.$store.state.workspace.undo(false);
+            Blockly.getMainWorkspace().undo(false);
         },
         redo() {
-            this.$store.state.workspace.undo(true);
+            Blockly.getMainWorkspace().undo(true);
         },
         clearGhost(){
-            var allBlocks = this.$store.state.workspace.getAllBlocks();
+            var allBlocks = Blockly.getMainWorkspace().getAllBlocks();
             var disabledBlocks = allBlocks.filter(function(block){return !block.isEnabled()})
             for(var i = 0;i < disabledBlocks.length; i++) disabledBlocks[i].dispose();
         },
         clear() {
-            this.$store.state.workspace.getAllBlocks().forEach((block) => block.dispose());
+            Blockly.getMainWorkspace().getAllBlocks().forEach((block) => block.dispose());
         },
         cleanUp(){
-            this.$store.state.workspace.cleanUp();
+            Blockly.getMainWorkspace().cleanUp();
         }
     }
 }

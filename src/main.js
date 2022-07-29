@@ -8,7 +8,6 @@ import Blockly from "blockly";
 import VueToast from 'vue-toast-notification';
 import VueTour from 'vue-tour';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import savenload from './save-load';
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
@@ -20,7 +19,7 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
 Vue.config.productionTip = false;
-Vue.config.ignoredElements = ["field","block","category","xml","mutation","value","sep"];
+Vue.config.ignoredElements = ["field", "block", "category", "xml", "mutation", "value", "sep"];
 
 import r from "./require";
 
@@ -41,10 +40,10 @@ import toolbox from "./toolbox";
 import Theme from '@blockly/theme-dark';
 Vue.mixin({
     methods: {
-        async reloadWorkspace(){
+        async reloadWorkspace() {
             let val = await localforage.getItem("fav") === null ? null : await localforage.getItem("fav")
             // Get current workspace
-            let workspace = this.$store.state.workspace;
+            let workspace = Blockly.getMainWorkspace();
             // Convert it to a dom string
             const dom = Blockly.Xml.workspaceToDom(workspace);
             // Delete the current workspace
@@ -65,27 +64,28 @@ Vue.mixin({
                     minScale: 0.3,
                     scaleSpeed: 1.2
                 },
-            move:{
-        scrollbars: {
-          horizontal: true,
-          vertical: true
-        },
-        drag: true,
-        wheel: true},
-                toolbox: toolbox(Blockly,val)
+                move: {
+                    scrollbars: {
+                        horizontal: true,
+                        vertical: true
+                    },
+                    drag: true,
+                    wheel: true
+                },
+                toolbox: toolbox(Blockly, val)
             });
-   
+
             Blockly.Xml.domToWorkspace(dom, newWorkspace);
             // Update the workspace in the vuex store
             this.$store.commit("setWorkspace", {
                 workspace: newWorkspace
             })
-;				
+                ;
 
             // Return the workspace
             return workspace;
         },
-        setLanguage(locale){
+        setLanguage(locale) {
             switch (locale) {
                 case "en":
                     // Change Blockly language for default blocks
@@ -99,19 +99,19 @@ Vue.mixin({
                     break;
             }
         },
-        getWorkspaceCode(){
-            if(!this.$store.state.workspace) return "";
+        getWorkspaceCode() {
+            if (!Blockly.getMainWorkspace()) return "";
             let requires = [
-            `?`
+                `?`
             ]
             let requiresjscode = [`?`]
-            r(requires,requiresjscode,Blockly.JavaScript.workspaceToCode(this.$store.state.workspace))
-            setTimeout(async()=>{
-                await localforage.setItem("requires",requires)
-            },1000)
+            r(requires, requiresjscode, Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace()))
+            setTimeout(async () => {
+                await localforage.setItem("requires", requires)
+            }, 1000)
             return `
 
-${Blockly.JavaScript.workspaceToCode(this.$store.state.workspace)}
+${Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace())}
 
 `;
         }
@@ -122,10 +122,7 @@ ${Blockly.JavaScript.workspaceToCode(this.$store.state.workspace)}
 new Vue({
     store,
     render: h => h(App),
-    i18n,
-    mounted() {
-        savenload(this);
-    },
+    i18n
 }).$mount("#app");
 
 import 'bootstrap/dist/css/bootstrap.css';

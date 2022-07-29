@@ -17,12 +17,12 @@ export default {
     name: "filemenu",
     methods: {
         copy() {
-            var url = this.getWorkspaceCode()
+            var url = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace())
            navigator.clipboard.writeText(url)
         },
-        viewCode() {
-			alert(this.getWorkspaceCode());
-        },
+        //viewCode() {
+        //    alert(Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace()));
+        //},
         askForFile(){
             document.querySelector("#load-code").click();
         },
@@ -47,7 +47,7 @@ export default {
                 if(typeof result == "object"){
                     return;
                 } else if (result) {
-                    this.$store.state.workspace.getAllBlocks().forEach((block) => block.dispose());
+                    Blockly.getMainWorkspace().getAllBlocks().forEach((block) => block.dispose());
                 }
             const file = document.getElementById("load-code").files[0];
             const documentName = file.name.split(".").slice(0, file.name.split(".").length-1);
@@ -62,7 +62,7 @@ export default {
                 })
                 .then((text) => {
                     const xml = Blockly.Xml.textToDom(text);
-                    Blockly.Xml.domToWorkspace(xml, this.$store.state.workspace);
+                    Blockly.Xml.domToWorkspace(xml, Blockly.getMainWorkspace());
                 }).catch(() => {
                     this.$toast.open({
                         message: this.$t('load.error'),
@@ -80,7 +80,7 @@ export default {
         },
         save(){
             const zip = new JSZip();
-            const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
+            const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace()));
             const fileName = `${encodeURIComponent(document.querySelector("#docName").textContent).replace(/%20/g, ' ')}.s4w`;
             zip.file("blocks.xml", xmlContent);
             zip.generateAsync({
