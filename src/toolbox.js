@@ -91,8 +91,8 @@ export default (Blockly) => {
 
   </category>
 
-  <category name="CSS" colour="#22ffaa">
-  <block type="parham_css_class_styles"/>
+  <category name="Styles" colour="#003cff">
+  <block type="parham_styles_class"/>
   </category>
 </xml>
 `.replace(/{{\s([A-z]{3,})\s}}/g, (x) => {

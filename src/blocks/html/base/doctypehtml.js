@@ -3,7 +3,7 @@ import Blockly from "blockly/core";
 const blockName = "html_doctype";
 
 const blockData = {
-    "message0": "Make a website with language %1 %2 %3",
+    "message0": "Make a webpage with language %1 %2 %3",
     "colour": "#F5AB1A",
     "args0": [
         {

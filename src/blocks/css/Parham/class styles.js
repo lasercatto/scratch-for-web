@@ -1,9 +1,9 @@
 import Blockly from "blockly/core";
 
-const blockName = "parham_css_class_styles";
+const blockName = "parham_styles_class";
 
 const blockData = {
-  "message0": "Class %1 CSS Styles %2",
+  "message0": "Class %1 Styles %2",
   "args0": [
     {
       "type": "field_input",
@@ -20,7 +20,7 @@ const blockData = {
   "previousStatement": null,
   "nextStatement": null,
   "colour": 240,
-  "tooltip": "Do CSS Styles To Your Tag, Only Use This Block In First Of Tags",
+  "tooltip": "Give Your Class Some Style",
   "helpUrl": ""
 };
 
@@ -30,7 +30,7 @@ Blockly.Blocks[blockName] = {
     }
 };
 
-Blockly.JavaScript['parham_css_class_styles'] = function(block) {
+Blockly.JavaScript[blockName] = function(block) {
   var text_class = block.getFieldValue('Class');
   var text_css_styles = block.getFieldValue('CSS Styles');
   // TODO: Assemble JavaScript into code variable.
@@ -38,6 +38,6 @@ Blockly.JavaScript['parham_css_class_styles'] = function(block) {
   ${text_class}{
     ${text_css_styles}
   }
-  </style>\n`;
+</style>\n`;
   return code;
 };
