@@ -44,7 +44,7 @@ Blockly.Blocks[blockName] = {
 
 Blockly.JavaScript[blockName] = function(block) {
     const statements = Blockly.JavaScript.statementToCode(block, "STATEMENTS", Blockly.JavaScript.ORDER_ATOMIC);
-    let css = Blockly.JavaScript.getFieldValue("CSS");
+    let css = block.getFieldValue("CSS");
   let type = Blockly.JavaScript.valueToCode(block, "TYPE", Blockly.JavaScript.ORDER_ATOMIC);
   let cd = null
   if ((type||null)==null){

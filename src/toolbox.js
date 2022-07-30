@@ -91,6 +91,9 @@ export default (Blockly) => {
 
   </category>
 
+  <category name="Styles" colour="#003cff">
+  <block type="parham_styles_class"/>
+  </category>
 </xml>
 `.replace(/{{\s([A-z]{3,})\s}}/g, (x) => {
       return Blockly.Msg[x.replace("{{ ", "").replace(" }}", "")];

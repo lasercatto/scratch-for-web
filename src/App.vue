@@ -13,6 +13,7 @@ import BlocklyComponent from "./components/BlocklyComponent.vue";
 
 Blockly.Tooltip.HOVER_MS = 100;
 
+import "./blocks"; // Load the blocks
 // Load folders with blocks
 import "./prompt";
 import "./blocks/html";
