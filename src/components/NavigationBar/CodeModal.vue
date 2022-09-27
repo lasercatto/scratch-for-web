@@ -1,3 +1,4 @@
+<template>
     <b-modal id="code-modal" :title="$t('code_modal.title')" cancel-title="Close" ok-title="Copy to Clipboard" @ok="copy">
         <textarea disabled :value="content" id="code">
         </textarea>
