@@ -13,7 +13,7 @@ export default {
                 position: 'center',
                 icon: 'info',
                 title: 'S4W Developers',
-                text: 'Not The Droids, LaserCat, Parham - v1.0',
+                text: 'Not The Droids, LaserCat, Malik999 ,Parham - v1.0',
                 showConfirmButton: true
             })
         },
