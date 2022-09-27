@@ -25,6 +25,6 @@ Blockly.Blocks[blockName] = {
 
 Blockly.JavaScript[blockName] = function(block) {
     const statements = Blockly.JavaScript.valueToCode(block, "TEXT", Blockly.JavaScript.ORDER_ATOMIC);
-    const code = `${statements}`;
+    const code = `<p>${statements}</p>`;
     return code;
 };
