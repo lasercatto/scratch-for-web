@@ -1,34 +1,24 @@
-<template>
-    <b-modal id="code-modal" :title="$t('code_modal.title')" ok-only>
+    <b-modal id="code-modal" :title="$t('code_modal.title')" cancel-title="Close" ok-title="Copy to Clipboard" @ok="copy">
         <textarea disabled :value="content" id="code">
         </textarea>
   </b-modal>
 </template>
 
 <script>
-//import Blockly from "blockly";
-//import beautify from "js-beautify";
-  
 export default {
-    name: "editmenu",
+    name: "content",
     computed: {
         content: function(){
-            // couldnt get it to work so i just made it return specific text only
-            return "This feature still doesn't work yet. Hopefully it'll be fixed soon!"
+             return this.getWorkspaceCode()
         }
     }
 }
 </script>
 
 <style>
-
-
 #code {
     min-width: 100%;
     min-height: 100%;
-}
-#code-modal {
-    color: white;
 }
 #code-modal .modal-dialog {
     max-width: 100%;
@@ -45,5 +35,4 @@ export default {
 .modal-content {
 		background-color: #343434;
 }
-
 </style>
