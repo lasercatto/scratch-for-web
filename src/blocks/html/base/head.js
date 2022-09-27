@@ -3,7 +3,7 @@ import Blockly from "blockly/core";
 const blockName = "html_head";
 
 const blockData = {
-    "message0": "head %1 %2",
+    "message0": "center text or div %1 %2",
     "colour": "#218ceb",
     "args0": [
         {
@@ -29,9 +29,9 @@ Blockly.JavaScript[blockName] = function(block) {
     const statements = Blockly.JavaScript.statementToCode(block, "STATEMENTS");
     
     const code = `
-<head>
+<center>
 ${statements}
-</head>
+</centers>
 `;
     return code;
 };

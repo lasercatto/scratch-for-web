@@ -3,7 +3,7 @@ import Blockly from "blockly/core";
 const blockName = "html_header";
 
 const blockData = {
-    "message0": "header size %3 with %1 of %2 %4",
+    "message0": "create a heder then set size to  %3 set class/id %1 to %2 %4",
     "colour": "#218ceb",
     "args0": [
       {

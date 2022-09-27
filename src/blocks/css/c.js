@@ -1,9 +1,9 @@
 import Blockly from "blockly/core";
 
-const blockName = "html_bold";
+const blockName = "html_cjs";
 
 const blockData = {
-    "message0": "Set font to bold %1 %2",
+    "message0": "CSS Styling %1 %2",
     "colour": "#218ceb",
     "args0": [
         {
@@ -16,7 +16,7 @@ const blockData = {
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "tooltip": "Makes text bold."
+    "tooltip": "The main block to add stuff to your website!"
 };
 
 Blockly.Blocks[blockName] = {
@@ -28,7 +28,9 @@ Blockly.Blocks[blockName] = {
 Blockly.JavaScript[blockName] = function(block) {
     const statements = Blockly.JavaScript.statementToCode(block, "STATEMENTS");
     const code = `
-<b>${statements}</b>
+<style>
+${statements}
+</style>
 `;
     return code;
 };

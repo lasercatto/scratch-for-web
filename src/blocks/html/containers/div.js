@@ -3,7 +3,7 @@ import Blockly from "blockly/core";
 const blockName = "html_div";
 
 const blockData = {
-    "message0": "div with %1 of %2 %3",
+    "message0": "create a div and set%1 to%2 %3",
     "colour": "#218ceb",
     "args0": [
       {

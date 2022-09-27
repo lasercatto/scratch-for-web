@@ -1,2 +1,6 @@
 import "./lang.js"
 import "./textinput.js"
+import "./buttoncolor.js"
+import "./javascript.js"
+import "./bs5button"
+import "./decoration"

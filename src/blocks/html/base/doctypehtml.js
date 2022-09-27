@@ -3,7 +3,7 @@ import Blockly from "blockly/core";
 const blockName = "html_doctype";
 
 const blockData = {
-    "message0": "Make a webpage with language %1 %2 %3",
+    "message0": "Make a webpage  Then Set Language To %1  %2 Then set Header Content %3 Body Content%4",
     "colour": "#F5AB1A",
     "args0": [
         {
@@ -16,7 +16,11 @@ const blockData = {
         },
         {
             "type": "input_statement",
-            "name": "STATEMENTS"
+            "name": "head"
+        },
+        {
+            "type": "input_statement",
+            "name": "body"
         }
     ],
     "tooltip": "The first block you will need to create the webpage."
@@ -29,11 +33,20 @@ Blockly.Blocks[blockName] = {
 };
 
 Blockly.JavaScript[blockName] = function(block) {
-    const statements = Blockly.JavaScript.statementToCode(block, "STATEMENTS");
+    const head = Blockly.JavaScript.statementToCode(block, "head");
+    const body = Blockly.JavaScript.statementToCode(block, "body");
     const lang = Blockly.JavaScript.valueToCode(block, "LANG", Blockly.JavaScript.ORDER_ATOMIC);
     const code = `<!DOCTYPE HTML>
 <html lang='${lang}'>
-${statements}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<head>
+${head}
+</head
+<body>
+${body}
+</body>
 </html>
 `;
     return code;
