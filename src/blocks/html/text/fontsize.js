@@ -1,23 +1,20 @@
 import Blockly from "blockly/core";
 
-const blockName = "html_color";
+const blockName = "html_fontsize";
 
 const blockData = {
-    "message0": "CSS Text Color %1 %2",
+    "message0": "Set Font Size To %1 px ",
     "colour": "#218ceb",
     "args0": [
         {
-            "type": "input_dummy"
-        },
-        {
             "type": "input_value",
-            "name": "color",
-            "check": ["String", "color"]
+            "name": "TEXT",
+            "check": ["String", "Number"]
         },
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "tooltip": "Set text color"
+    "tooltip": "Link a url to text."
 };
 
 Blockly.Blocks[blockName] = {
@@ -27,9 +24,9 @@ Blockly.Blocks[blockName] = {
 };
 
 Blockly.JavaScript[blockName] = function(block) {
-    const color = Blockly.JavaScript.valueToCode(block, "color", Blockly.JavaScript.ORDER_ATOMIC);
+    const textdec = Blockly.JavaScript.valueToCode(block, "TEXT", Blockly.JavaScript.ORDER_ATOMIC);
     const code = `
-    color:${color};
+    font-size:${textdec}px;
     `;
     return code;
 };

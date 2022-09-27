@@ -3,7 +3,7 @@ import Blockly from "blockly/core";
 const blockName = "html_anchor";
 
 const blockData = {
-    "message0": "link text %1 to url %2",
+    "message0": "Name of Anchor %1 Set the anchor Url %2 Set Text Decoration to %3",
     "colour": "#218ceb",
     "args0": [
         {
@@ -15,7 +15,11 @@ const blockData = {
             "type": "input_value",
             "name": "URL",
             "check": ["String", "Number"]
-        }
+        },
+        {
+            "type": "input_value",
+            "name": "textdecoration"
+          },
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -31,6 +35,7 @@ Blockly.Blocks[blockName] = {
 Blockly.JavaScript[blockName] = function(block) {
     const statements = Blockly.JavaScript.valueToCode(block, "TEXT", Blockly.JavaScript.ORDER_ATOMIC);
     const url = Blockly.JavaScript.valueToCode(block, "TEXT", Blockly.JavaScript.ORDER_ATOMIC);
-    const code = `<a href="${url}">${statements}</a>`;
+    const textdec = Blockly.JavaScript.valueToCode(block, "textdecoration", Blockly.JavaScript.ORDER_ATOMIC);
+    const code = `<a style="text-decoration:${textdec};" href="${url}">${statements}</a>`;
     return code;
 };

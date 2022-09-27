@@ -1,23 +1,22 @@
 import Blockly from "blockly/core";
 
-const blockName = "html_color";
+const blockName = "html_tablec";
 
 const blockData = {
-    "message0": "CSS Text Color %1 %2",
+    "message0": "Organize Table content %1 %2",
     "colour": "#218ceb",
     "args0": [
         {
             "type": "input_dummy"
         },
         {
-            "type": "input_value",
-            "name": "color",
-            "check": ["String", "color"]
-        },
+            "type": "input_statement",
+            "name": "STATEMENTS"
+        }
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "tooltip": "Set text color"
+    "tooltip": "The main block to add stuff to your website!"
 };
 
 Blockly.Blocks[blockName] = {
@@ -27,9 +26,11 @@ Blockly.Blocks[blockName] = {
 };
 
 Blockly.JavaScript[blockName] = function(block) {
-    const color = Blockly.JavaScript.valueToCode(block, "color", Blockly.JavaScript.ORDER_ATOMIC);
+    const statements = Blockly.JavaScript.statementToCode(block, "STATEMENTS");
     const code = `
-    color:${color};
-    `;
+<tr>
+${statements}
+</tr>
+`;
     return code;
 };

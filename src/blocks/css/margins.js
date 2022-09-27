@@ -34,6 +34,8 @@ Blockly.Blocks[blockName] = {
 Blockly.JavaScript[blockName] = function(block) {
     const margin = Blockly.JavaScript.valueToCode(block, "margin", Blockly.JavaScript.ORDER_ATOMIC);
     const marginpx = Blockly.JavaScript.valueToCode(block, "marginpx", Blockly.JavaScript.ORDER_ATOMIC);
-    const code = `margin-${margin}: ${marginpx}px;`;
+    const code = `
+    margin-${margin}: ${marginpx}px;
+    `;
     return code;
 };

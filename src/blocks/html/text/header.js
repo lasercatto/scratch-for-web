@@ -3,31 +3,12 @@ import Blockly from "blockly/core";
 const blockName = "html_header";
 
 const blockData = {
-    "message0": "create a heder then set size to  %3 set class/id %1 to %2 %4",
+    "message0": "Create a Header set size %1 class name %2 %3",
     "colour": "#218ceb",
     "args0": [
       {
             "type": "field_dropdown",
             "name": "CSS",
-            "options": [
-              [
-                "Class",
-                'class'
-              ],
-              [
-                "ID",
-                'id'
-              ]
-            ]
-          },
-          {
-                "type": "input_value",
-                "name": "TYPE",
-                "check": ["String", "Number"]
-          },
-          {
-            "type": "field_dropdown",
-            "name": "SIZE",
             "options": [
               [
                 "1",
@@ -52,17 +33,23 @@ const blockData = {
               [
                 "6",
                 'h6'
-              ],
-              
+              ]
             ]
-          },{
+          },
+       
+          {
+                "type": "input_value",
+                "name": "TYPE",
+                "check": ["String", "Number"]
+          },
+        {
             "type": "input_statement",
             "name": "STATEMENTS"
         },
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "tooltip": "Puts text into a header."
+    "tooltip": "Puts text into a paragraph."
 };
 
 Blockly.Blocks[blockName] = {
@@ -74,23 +61,9 @@ Blockly.Blocks[blockName] = {
 
 Blockly.JavaScript[blockName] = function(block) {
     const statements = Blockly.JavaScript.statementToCode(block, "STATEMENTS", Blockly.JavaScript.ORDER_ATOMIC);
-    let css = Blockly.JavaScript.getFieldValue("CSS");
-    let size = Blockly.JavaScript.getFieldValue("SIZE");
-  let type = Blockly.JavaScript.valueToCode(block, "TYPE", Blockly.JavaScript.ORDER_ATOMIC);
-  let cd = null
-  if ((type||null)==null){
-    cd = ``
-  } else {
-    css = String(type)
-    if(css == 'id') {
-      cd = ` id="${type}"`
-    } else {
-      cd = ` class="${type}"`
-    }
-
-  }
+    let css = block.getFieldValue("CSS");
     const code = `
-<${size}${cd}>${statements}</${size}>
+<${css}>${statements}</${css}>
 `;
     return code;
 };
