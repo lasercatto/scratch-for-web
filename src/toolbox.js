@@ -22,6 +22,8 @@ export default (Blockly) => {
 
       <block type="html_head">
       </block>
+      <block type="html_image">
+      </block>
       <block type="html_websitetext">
       </block>
 
@@ -121,10 +123,12 @@ export default (Blockly) => {
 
   </value>
   </block>
+  <block type="general_top"></block>
   <block type="general_margi"></block>
   <block type="general_negative"></block>
   <block type="general_height"></block>
   <block type="general_width"></block>
+  <block type="general_height"></block>
   </category>
   <category name="Font">
   <block type="css_fontimport"></block>
@@ -165,9 +169,12 @@ export default (Blockly) => {
 
   </block>
   <block type="rtific"></block>
-  </category>
+  </category>s
   <category name="Bootstrap 5 Colors" colour="#003cff">
   <block type="containercolor"></block>
+  </category>
+  <category name="Bootstrap 5 Extras" colour="#003cff">
+  <block type="bs5_centerbs5"></block>
   </category>
   <category name="Bootstrap 5 Table" colour="#003cff">
   <block type="bs5_table">
@@ -192,6 +199,10 @@ export default (Blockly) => {
   <block type="bs5_navcenter"></block>
   <block type="bs5_navlogo"></block>
   <block type="bs5_textnav"></block>
+  <block type="bs5_fixednav"></block>
+  <block type="bs5_tab"></block>
+  <block type="tabcontent"></block>
+  <block type="tabanc"></block>
   </category>
   <category name="Bootstrap 5 Containers" colour="#003cff">
   <block type="html_fluidcontainer"></block>
@@ -208,6 +219,20 @@ export default (Blockly) => {
   </category>
   <category name="Bungie CSS By Malik" colour="#444444">
   <block type="bungie_button"></block>
+  <block type="bungiee_grid"></block>
+  <block type="bungiee_grid3"></block>
+  <block type="bungiee_grid2"></block>
+  <category name="Bungie Cards">
+  <block type="bungie_card"></block>
+  <block type="bungieui_css"></block>
+  </category>
+  <category name="Bungie Animations">
+  <block type="bungie_animation1"></block>
+  <block type="bungie_advancedanim"></block>
+  </category>
+  <category name="Bungie Alerts">
+  <block type="bungie_alerts"></block>
+  </category>
   
   </category>
 
