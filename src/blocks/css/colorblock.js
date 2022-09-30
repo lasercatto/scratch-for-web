@@ -36,7 +36,7 @@ const blockData = {
               ],
               [
                 "Black",
-                'black'
+                '#444444'
               ],
               
             ],

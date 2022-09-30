@@ -44,8 +44,10 @@ Blockly.JavaScript[blockName] = function(block) {
 <head>
 ${head}
 </head
-<body>
+<body style="background-size:cover">
+<div class="container">
 ${body}
+</div>
 </body>
 </html>
 `;

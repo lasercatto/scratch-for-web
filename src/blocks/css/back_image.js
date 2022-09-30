@@ -29,7 +29,7 @@ Blockly.Blocks[blockName] = {
 Blockly.JavaScript[blockName] = function(block) {
     const color = Blockly.JavaScript.valueToCode(block, "color", Blockly.JavaScript.ORDER_ATOMIC);
     const code = `body {
-        background:  url("${color}") no-repeat fixed center;
+        background:  url("${color}") no-repeat fixed center; background-size:cover
       }`;
     return code;
 };
