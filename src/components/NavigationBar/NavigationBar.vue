@@ -2,7 +2,7 @@
     <b-navbar toggleable="lg" type="dark" style="background-color:#161719;user-select:none;" id="navbar nav-main">
         <b-navbar-brand>
             <img src="../../assets/scratch_for_web.png" width="40" draggable="false">
-            Scratch For Web v1.2
+            Scratch For Web v1.2.1
         </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
