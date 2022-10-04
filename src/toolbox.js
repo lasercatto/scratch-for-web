@@ -22,6 +22,9 @@ export default (Blockly) => {
 
       <block type="html_head">
       </block>
+      <block type="html_import">
+      </block>
+      <block type="html_object"></block>
       <block type="html_image">
       </block>
       <block type="html_websitetext">
@@ -173,6 +176,17 @@ export default (Blockly) => {
   <category name="Bootstrap 5 Colors" colour="#003cff">
   <block type="containercolor"></block>
   </category>
+  <category name="Bootstrap 5 Alerts" colour="#003cff">
+  <block type="bs5_alerts">
+
+  <value name="color">
+
+    <block type="alertcolor">
+    </block>
+
+  </value>
+  </block>
+  </category>
   <category name="Bootstrap 5 Extras" colour="#003cff">
   <block type="bs5_centerbs5"></block>
   </category>
@@ -222,6 +236,7 @@ export default (Blockly) => {
   <block type="bungiee_grid"></block>
   <block type="bungiee_grid3"></block>
   <block type="bungiee_grid2"></block>
+  <block type="bungiee_modal"></block>
   <category name="Bungie Cards">
   <block type="bungie_card"></block>
   <block type="bungieui_css"></block>
@@ -230,8 +245,18 @@ export default (Blockly) => {
   <block type="bungie_animation1"></block>
   <block type="bungie_advancedanim"></block>
   </category>
-  <category name="Bungie Alerts">
-  <block type="bungie_alerts"></block>
+  <category name="Search Site">
+  <category name="Webpage Indexing">
+  <block type="bungiee_search"></block>
+  <block type="bungiee_searchbar"></block>
+  <block type="bungiee_searchbarindex"></block>
+  <category name="Filtered Search">
+  <block type="bungiee_search2"></block>
+  <block type="searchitem"></block>
+  <block type="indexsearch"></block>
+  <block type="indexjs"></block>
+  </category>
+  </category>
   </category>
   
   </category>
