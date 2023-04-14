@@ -49,34 +49,35 @@ export default {
                 } else if (result) {
                     Blockly.getMainWorkspace().getAllBlocks().forEach((block) => block.dispose());
                 }
-            const file = document.getElementById("load-code").files[0];
-            const documentName = file.name.split(".").slice(0, file.name.split(".").length-1);
-            document.querySelector("#docName").textContent = documentName;
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                JSZip.loadAsync(e.target.result)
-                    .then((data) => {
-                    if (data.file("blocks.xml")) {
-                        return data.file("blocks.xml").async("string")
-                    }
-                })
-                .then((text) => {
-                    const xml = Blockly.Xml.textToDom(text);
-                    Blockly.Xml.domToWorkspace(xml, Blockly.getMainWorkspace());
-                }).catch(() => {
-                    this.$toast.open({
-                        message: this.$t('load.error'),
-                        type: "error",
-                        dismissible: true,
-                        duration: 10000
+                const file = document.getElementById("load-code").files[0];
+                const documentName = file.name.split(".").slice(0, file.name.split(".").length-1);
+                document.querySelector("#docName").textContent = documentName;
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    JSZip.loadAsync(e.target.result)
+                        .then((data) => {
+                        if (data.file("blocks.xml")) {
+                            return data.file("blocks.xml").async("string")
+                        }
+                    })
+                    .then((text) => {
+                        const xml = Blockly.Xml.textToDom(text);
+                        Blockly.Xml.domToWorkspace(xml, Blockly.getMainWorkspace());
+                    }).catch((err) => {
+                        this.$toast.open({
+                            message: this.$t('load.error'),
+                            type: "error",
+                            dismissible: true,
+                            duration: 10000
+                        });
+                        console.warn(err)
                     });
-                });
-            };
-            if (file) {
-                reader.readAsArrayBuffer(file);
-                document.getElementById("load-code").setAttribute("value", "");
-            }
-        });
+                };
+                if (file) {
+                    reader.readAsArrayBuffer(file);
+                    document.getElementById("load-code").setAttribute("value", "");
+                }
+            });
         },
         save(){
             const zip = new JSZip();

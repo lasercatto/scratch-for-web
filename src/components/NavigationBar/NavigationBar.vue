@@ -12,6 +12,7 @@
                 <CodeModal></CodeModal>
                 <FileMenu></FileMenu>
                 <EditMenu></EditMenu>
+                <Examples></Examples> <!-- the examples  dropdown -->
                 <ToolboxModal></ToolboxModal>
                 <Socials></Socials>
                 <b-nav-item href="https://discord.gg/ycAdUMNE9P" target="_blank">Support</b-nav-item>
@@ -45,6 +46,7 @@ import CodeModal from "./CodeModal.vue";
 import ToolboxModal from "./ToolboxModal.vue";
 import Socials from "./socials.vue";
 import Credit from "./Credit";
+import Examples from "./ExamplesMenu"; // import the examples dropdown so we can add it below
 export default {
     name: "navbar",
     components: {
@@ -53,7 +55,8 @@ export default {
         CodeModal,
         ToolboxModal,
         Credit,
-        Socials
+        Socials,
+        Examples // add the examples dropdown so we can put it in the navbar
     },
     // computed: {
     //     configurationValidated: function () {
